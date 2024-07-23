@@ -44,7 +44,7 @@ jobs:
           tags: |
             ghcr.io/${{ env.REPO }}/${{ env.REPO_NAME }}:latest
             ghcr.io/${{ env.REPO }}/${{ env.REPO_NAME }}:${{ env.TAG_NAME }}
-          platforms: linux/arm/v7,linux/arm64/v8,linux/amd64
+          platforms: linux/arm64/v8,linux/amd64
 
   Release:
     runs-on: ubuntu-latest
