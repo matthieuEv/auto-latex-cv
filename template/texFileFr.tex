@@ -1,0 +1,220 @@
+%-------------------------
+% Resume in Latex
+% Author : matthieuEV
+% License : MIT
+%------------------------
+\documentclass[letterpaper,11pt]{article}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[
+  bookmarks=false,
+  hidelinks
+]{hyperref}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{graphicx}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+\RequirePackage{tikz}
+\RequirePackage{xcolor}
+\definecolor{cvblue}{HTML}{0E5484}
+\definecolor{black}{HTML}{130810}
+\definecolor{darkcolor}{HTML}{0F4539}
+\definecolor{cvgreen}{HTML}{3BD80D}
+\definecolor{taggreen}{HTML}{00E278}
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\colorlet{name}{black}
+\colorlet{tagline}{darkcolor}
+\colorlet{heading}{darkcolor}
+\colorlet{headingrule}{cvblue}
+\colorlet{accent}{darkcolor}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
+\usepackage{CormorantGaramond}
+\usepackage{charter}
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+\pdfgentounicode=1
+
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.1in]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+\newcommand{\resumeSingleSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{\large#1} & \textbf{\small #2} \\
+      
+    \end{tabular*}\vspace{-7pt}
+}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{\large#1} & \textbf{\small #2} \\
+      \textit{\large#3} & \textit{\small #4} \\
+      
+    \end{tabular*}\vspace{-7pt}
+}
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    { #1 \vspace{-1pt}}
+  }
+}
+\newcommand{\classesList}[4]{
+    \item\small{
+        { #1 #2 #3 #4 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{ #1}\vspace{-4pt}}
+\newcommand\sbullet[1][.5]{\mathbin{\vcenter{\hbox{\scalebox{ #1}{$\bullet$}}}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+  {\huge {{ full_name }}} \\ \vspace{10pt}
+  \href{mailto:{{ email }}} {\color{blue} {{ email }}} ~
+  {% for key, value in links %} \href{ {{ value }} } {\color{blue} {{ key }}} ~ {% endfor %}
+\end{center}
+
+%-----------SUMMARY-----------
+\section{\color{airforceblue}PROFIL}
+  {{ description }}
+\vspace{-10pt}
+
+%-----------PROGRAMMING SKILLS-----------
+\section{\color{airforceblue}COMPÉTENCES TECHNIQUES}
+  \begin{itemize}[leftmargin=0in, label={}]
+    \small{
+      {% for skill in skills %}
+        \resumeItem{\normalsize{\textbf{ {{ skill.Name}} :}
+        {% for item in skill.list %}{{ item }} , {% endfor %}
+        }}
+      {% endfor %}
+    }
+ \end{itemize}
+ \vspace{-16pt}
+
+%-----------PROJECTS-----------
+\section{\color{airforceblue}PROJETS}    
+\resumeItemListStart
+    \vspace{0.5pt}
+      {% for proj in projects %}
+        \vspace{0.5pt}
+        {% if proj.Link == '' %}
+          \resumeItem{\normalsize{\textbf{ {{ proj.Name }} }, {{ proj.Description }} } }
+        {% else %}
+          \resumeItem{\normalsize{\textbf{ {{ proj.Name }} }, {{ proj.Description }} } \href{ {{ proj.Link }} }{\color{blue}\underline{GitHub}}}
+        {% endif %}
+      {% endfor %}
+    \vspace{5pt}
+\resumeItemListEnd  
+
+\vspace{-12pt}
+
+%-----------EXPERIENCE-----------
+\section{\color{airforceblue}EXPÉRIENCES}
+ \resumeSubHeadingListStart
+  {% for exp in experience %}
+    \resumeSubheading
+      { {{ exp.Title }} }{ {{ exp.Company }} }{ {{ exp.Location }} }{ {{ exp.Start }} , {{ exp.End }} }
+      \resumeItemListStart
+      {% for desc in exp.Description %}
+      \resumeItem{\normalsize{ {{ desc }} } }
+      {% endfor %}
+      \null\hfill\raisebox{30pt}[0pt][0pt]{\includegraphics[width=30pt, height=30pt]{ {{ exp.image }} }}
+      \resumeItemListEnd
+  {% endfor %}
+ \resumeSubHeadingListEnd
+\vspace{-20pt}
+
+%-----------EDUCATION-----------
+\section{\color{airforceblue}FORMATION}
+  \resumeSubHeadingListStart
+  {% for edu in education %}
+    \resumeSubheading
+      { {{ edu.Name }} }{ {{ edu.Start }} - {{ edu.End }}}
+      { {{ edu.Degree }} }{ {{ edu.Location }} }
+  {% endfor %}
+  \resumeSubHeadingListEnd
+  \vspace{-10pt}
+
+%-----------certification---------------
+\section{\color{airforceblue}CERTIFICATIONS}
+    
+  \resumeItemListStart
+    {% for cert in certification %}
+        {% if cert.Link == '' %}
+          \resumeItem{ \normalsize{ \textbf{ {{ cert.Name }} ( {{ cert.Date }} )}} }
+        {% else %}
+          \resumeItem{ \normalsize{ \textbf{ {{ cert.Name }} ( {{ cert.Date }} )}} \href{ {{ cert.Link }} }{ \color{blue}\underline{Link} }}
+        {% endif %}
+        \vspace{-5pt}
+    {% endfor %}
+  \resumeItemListEnd 
+      
+\vspace{-8pt}
+
+%-----------language---------------
+\section{\color{airforceblue}LANGUES}
+  \resumeItemListStart
+    {% for key, value in languages %}
+      \resumeItem{ \normalsize{ {{ key }} - {{ value }} } }
+      \vspace{-5pt}
+    {% endfor %}
+  \resumeItemListEnd     
+  \vspace{-8pt}
+
+%-----------EXTRACURRICULAR---------------
+\section{\color{airforceblue}CENTRE D'INTÉRÊT}
+    
+      \resumeItemListStart
+        {% for item in extracurricular %}
+          \resumeItem{\normalsize{\textbf{ {{item.Name}} :} {{ item.Description }} }}
+          \vspace{-5pt}
+        {% endfor %}
+      \resumeItemListEnd 
+      
+\vspace{-12pt}
+
+\end{document}
+

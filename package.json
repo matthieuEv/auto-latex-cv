@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "eventsource": "^2.0.2",
+    "fs": "^0.0.1-security",
+    "nunjucks": "^3.2.4",
+    "pocketbase": "^0.21.3"
+  }
+}
