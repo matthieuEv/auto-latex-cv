@@ -78,10 +78,10 @@ class GeneratePDF {
     generate() {
         return new Promise((resolve, reject) => {
             console.log(">>> generate.js");
-            // Supprime le fichier s'il existe
-            if (fs.existsSync(this.outputPDF)) {
-                fs.unlinkSync(this.outputPDF);
-            }
+            // // Supprime le fichier s'il existe
+            // if (fs.existsSync(this.outputPDF)) {
+            //     fs.unlinkSync(this.outputPDF);
+            // }
 
             // Rendre le modèle LaTeX
             this._nunjucksToLatex().then((renderedLatex) => {
@@ -99,8 +99,7 @@ class GeneratePDF {
                         reject(error); // Rejeter la promesse avec l'erreur
                     } else {
                         console.log("PDF généré avec succès.");
-                        // Nettoyer le fichier LaTeX temporaire
-                        fs.unlinkSync(outputTexFile);
+                        console.log(`Path to the generated PDF: ${this.outputPDF}`);
                         resolve(); // Résoudre la promesse
                     }
                 });
