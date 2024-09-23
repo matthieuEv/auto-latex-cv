@@ -57,6 +57,20 @@ async function main() {
         process.exit(1);
     }
 
+    let dataFr = await pb.collection('AutoLatexCv').getOne(process.env.POCKETBASE_AutoLatexCv_RECORD_ID_FR);
+    let dataEn = await pb.collection('AutoLatexCv').getOne(process.env.POCKETBASE_AutoLatexCv_RECORD_ID_EN);
+
+    // Generate PDFs
+    new GeneratePDF("template/texFileFr.tex", "build/output-fr.pdf", dataFr.json)
+    .generate().then(() => {
+        updateRecord('build/output-fr.pdf', 'fr', pb);
+    });
+    new GeneratePDF("template/texFileEn.tex", "build/output-en.pdf", dataEn.json)
+    .generate().then(() => {
+        updateRecord('build/output-en.pdf', 'en', pb);
+    });
+
+    // Subscribe to record changes
     try {
         await Promise.all([
             getRecordChanges(pb, process.env.POCKETBASE_AutoLatexCv_RECORD_ID_FR),

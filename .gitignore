@@ -16,3 +16,5 @@ images/*
 
 node_modules
 template.json
+
+.devcontainer/*
