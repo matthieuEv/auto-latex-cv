@@ -11,12 +11,16 @@ class GeneratePDF {
     }
 
     _downloadImage(url, dest) {
+        console.log(`Downloading image from ${url} to ${dest}`);
         return new Promise((resolve, reject) => {
             const file = fs.createWriteStream(dest);
             https.get(url, (response) => {
                 response.pipe(file);
                 file.on('finish', () => {
-                    file.close(resolve);
+                    file.close(() => {
+                        console.log(`Downloaded image to ${dest}`);
+                        resolve();
+                    });
                 });
             }).on('error', (err) => {
                 fs.unlink(dest, () => reject(err.message));
@@ -71,7 +75,7 @@ class GeneratePDF {
         // Render the LaTeX template with the JSON data
         const renderedLatex = nunjucks.renderString(template, data);
 
-        console.log("Conversion done");
+        console.log("Conversion done\n\n\n");
         return renderedLatex;
     }
 
@@ -91,6 +95,10 @@ class GeneratePDF {
 
                 // Compiler le fichier LaTeX en PDF
                 const { exec } = require('child_process');
+                // list all images in the images folder
+                const images = fs.readdirSync('images');
+                console.log("Images: ", images);
+
                 exec(`pdflatex -interaction=nonstopmode -jobname=${this.outputPDF.split(".")[0]} ${outputTexFile}`, (error, stdout, stderr) => {
                     if (error) {
                         console.error(`Erreur lors de l'exécution de pdflatex: ${error}`);
