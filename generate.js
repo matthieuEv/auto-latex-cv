@@ -90,11 +90,13 @@ class GeneratePDF {
             // Rendre le modèle LaTeX
             this._nunjucksToLatex().then((renderedLatex) => {
                 // Écrire le LaTeX rendu dans un fichier
-                const outputTexFile = 'output.tex';
+                const lang = this.outputPDF.includes('fr') ? 'fr' : 'en';
+                const outputTexFile = `output-${lang}.tex`;
                 fs.writeFileSync(outputTexFile, renderedLatex);
 
                 // Compiler le fichier LaTeX en PDF
                 const { exec } = require('child_process');
+                
                 // list all images in the images folder
                 const images = fs.readdirSync('images');
                 console.log("Images: ", images);
