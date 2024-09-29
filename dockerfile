@@ -13,4 +13,4 @@ COPY . .
 RUN npm install
 CMD [ "node", "main.mjs" ]
 
-# docker buildx build --push --platform linux/arm64/v8,linux/amd64 . -t ghcr.io/matthieuEv/auto-latex-cv:latest
+# docker buildx build --push --platform linux/arm64/v8,linux/amd64 . -t ghcr.io/matthieuev/auto-latex-cv:latest
